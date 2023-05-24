@@ -68,14 +68,14 @@ public class DeploymentExtensions : EditorWindow
 			MainSystem.Instance.StudentItemManager.ItemGenerate(path,_title,_author,_explanation);
 		}
 
-		if (GUILayout.Button("ブロック&展示物リセット(test)"))
-		{
-			MainSystem.Instance.StudentItemManager.ResetValue();
-		}
-		if (GUILayout.Button("ドロップダウン(test)"))
-		{
-			Debug.Log(_categoryIndex);
-		}
+		//if (GUILayout.Button("ブロック&展示物リセット(test)"))
+		//{
+		//	MainSystem.Instance.StudentItemManager.ResetValue();
+		//}
+		//if (GUILayout.Button("ドロップダウン(test)"))
+		//{
+		//	Debug.Log(_categoryIndex);
+		//}
 	}
 
 	private void CategoryDropDown()

@@ -10,7 +10,6 @@ public class Startup : MonoBehaviour
 	[InitializeOnLoadMethod]
 	private static void AA()
 	{
-		return;
 		EditorApplication.delayCall += Startup.CallSavaData;
 	}
 	private static void CallSavaData()
