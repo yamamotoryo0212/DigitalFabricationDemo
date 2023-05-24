@@ -31,4 +31,11 @@ public class MainSystem : SingletonMonoBehaviour<MainSystem>
 	{
 		get { return _fixPivotManager; }
 	}
+
+	[SerializeField]
+	private SaveDataManager _saveDataManager = null;
+	public SaveDataManager SaveDataManager
+	{
+		get { return _saveDataManager; }
+	}
 }

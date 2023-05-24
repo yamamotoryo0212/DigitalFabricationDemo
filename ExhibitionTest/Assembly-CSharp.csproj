@@ -57,19 +57,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\MainSystem\Managers\SizeFitterManager.cs" />
+    <Compile Include="Assets\Scripts\MainSystem\Managers\SaveDataManager.cs" />
+    <Compile Include="Assets\Scripts\MainSystem\Managers\FixPivotManager.cs" />
     <Compile Include="Assets\Scripts\DataBody\Item.cs" />
     <Compile Include="Assets\Scripts\MainSystem\Managers\AsssetPrefabricationManager.cs" />
     <Compile Include="Assets\Scripts\CategoryData\Categorys\Weapon.cs" />
+    <Compile Include="Assets\Scripts\MainSystem\Managers\StudentItemManager.cs" />
     <Compile Include="Assets\Scripts\CategoryData\Category.cs" />
     <Compile Include="Assets\Scripts\SingletonMonoBehaviour\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\Scripts\DataBody\Block.cs" />
     <Compile Include="Assets\Scripts\Test.cs" />
     <Compile Include="Assets\Scripts\MainSystem\MainSystem.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraMoving.cs" />
     <Compile Include="Assets\Scripts\CategoryData\Categorys\Animal.cs" />
     <Compile Include="Assets\Scripts\CategoryData\Categorys\Human.cs" />
-    <Compile Include="Assets\Scripts\MainSystem\Managers\StudentItemManager.cs" />
-    <Compile Include="Assets\Scripts\MainSystem\Managers\FixPivotManager.cs" />
-    <Compile Include="Assets\Scripts\Camera\CameraMoving.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -697,24 +698,6 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Autodesk.Fbx.Editor">
-      <HintPath>Library\ScriptAssemblies\Autodesk.Fbx.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Formats.Fbx.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Formats.Fbx.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Autodesk.Fbx">
-      <HintPath>Library\ScriptAssemblies\Autodesk.Fbx.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Formats.Fbx.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.Formats.Fbx.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-      <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

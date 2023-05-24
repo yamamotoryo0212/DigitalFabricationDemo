@@ -9,7 +9,6 @@ public class Block : MonoBehaviour
     {
         get { return _itemCount; }
     }
-    [SerializeField]
     private string _serialNumber = "00000000";
     public string SerialNumber
     {
@@ -62,6 +61,7 @@ public class Block : MonoBehaviour
         _items.Add(item);
         _itemCount++;
     }
+
     public void SetSerialNumber(int num)
     {
         const int length = 8;

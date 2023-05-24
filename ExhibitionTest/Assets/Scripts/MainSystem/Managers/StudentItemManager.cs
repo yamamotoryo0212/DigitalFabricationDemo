@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class StudentItemManager : MonoBehaviour
 {
-	[SerializeField]
-	private List<GameObject> _exhibitionItem = new List<GameObject>();
-	public List<GameObject> ExhibitionItem
+	private List<Item> _exhibitionItem = new List<Item>();
+	public List<Item> ExhibitionItem
 	{
 		get { return _exhibitionItem; }
 	}
@@ -18,10 +17,9 @@ public class StudentItemManager : MonoBehaviour
 
 	private int _blockCoefficient = 1;
 	private int _itemCoefficient = 0;
-	private Block _headBlock = null;
 	private List<GameObject> _blockParent = new List<GameObject>();
 
-	[SerializeField]
+
 	private GameObject _frontWall = null;
 
 	private Transform _itemParent = null;
@@ -40,14 +38,16 @@ public class StudentItemManager : MonoBehaviour
 			}
 		}
 	}
+
+
 	public void BlockGenerate()
 	{
 		//ÉuÉçÉbÉNê∂ê¨ïî
 		{
-			GameObject block = (GameObject)Resources.Load("Block");			
+			GameObject block = (GameObject)Resources.Load("Block");
+			ItemData itemData = new ItemData(); 
 
-
-			if (MainSystem.Instance.StudentItemManager.Block.Count == 0)
+			if (_block.Count == 0)
 			{
 				if (_itemParent == null)
 				{
@@ -70,13 +70,15 @@ public class StudentItemManager : MonoBehaviour
 				Instantiate(backWall, _itemParent.transform);
 				Instantiate(block, blockParent.transform);
 
-				MainSystem.Instance.StudentItemManager.Block.Add(block.GetComponent<Block>());
-				block.GetComponent<Block>().SetSerialNumber(MainSystem.Instance.StudentItemManager.Block.Count);
+				_block.Add(block.GetComponent<Block>());
+				block.GetComponent<Block>().SetSerialNumber(_block.Count);
 				block.GetComponent<Block>().OnSetPlacementPoints();
-				_headBlock = block.GetComponent<Block>();
+
+				//itemData.ExhibitionItem.Add()
+				//MainSystem.Instance.SaveDataManager.Save(itemData, MainSystem.Instance.SaveDataManager.Itempath);
 			}
 
-			if (!(MainSystem.Instance.StudentItemManager.ExhibitionItem.Count == 0) && MainSystem.Instance.StudentItemManager.ExhibitionItem.Count % 4 == 0)
+			if (!(_exhibitionItem.Count == 0) && _exhibitionItem.Count % 4 == 0)
 			{
 				GameObject blockParent = new GameObject("Block");
 				blockParent.transform.SetParent(_itemParent);
@@ -90,19 +92,18 @@ public class StudentItemManager : MonoBehaviour
 				Instantiate(
 							block,
 							new Vector3(
-										  MainSystem.Instance.StudentItemManager.Block[MainSystem.Instance.StudentItemManager.Block.Count - 1].transform.position.x,
-										  MainSystem.Instance.StudentItemManager.Block[MainSystem.Instance.StudentItemManager.Block.Count - 1].transform.position.y,
-										  MainSystem.Instance.StudentItemManager.Block[MainSystem.Instance.StudentItemManager.Block.Count - 1].transform.position.z + -150 * _blockCoefficient
+										  _block[_block.Count - 1].transform.position.x,
+										  _block[_block.Count - 1].transform.position.y,
+										  _block[_block.Count - 1].transform.position.z + -150 * _blockCoefficient
 										),
 							Quaternion.identity,
 							blockParent.transform
 							);
 				_blockCoefficient++;
 				_itemCoefficient++;
-				MainSystem.Instance.StudentItemManager.Block.Add(block.GetComponent<Block>());
-				block.GetComponent<Block>().SetSerialNumber(MainSystem.Instance.StudentItemManager.Block.Count);
+				_block.Add(block.GetComponent<Block>());
+				block.GetComponent<Block>().SetSerialNumber(_block.Count);
 				block.GetComponent<Block>().OnSetPlacementPoints();
-				_headBlock = block.GetComponent<Block>();
 				_frontWall.transform.position = new Vector3(_frontWall.transform.position.x, _frontWall.transform.position.y, _frontWall.transform.position.z - 150);
 			}
 		}
@@ -132,11 +133,11 @@ public class StudentItemManager : MonoBehaviour
 			}
 		}
 
-		foreach (var i in MainSystem.Instance.StudentItemManager.Block[MainSystem.Instance.StudentItemManager.Block.Count - 1].GetComponentsInChildren<Transform>())
+		foreach (Transform i in _block[_block.Count - 1].GetComponentsInChildren<Transform>())
 		{
 			if (i.name == " PlacementPoint")
 			{
-				foreach (var t in i.GetComponentsInChildren<Transform>())
+				foreach (Transform t in i.GetComponentsInChildren<Transform>())
 				{
 
 
@@ -146,9 +147,9 @@ public class StudentItemManager : MonoBehaviour
 					}
 					else
 					{
-						if (t.name == $" PlacementPoint00{MainSystem.Instance.StudentItemManager.Block[MainSystem.Instance.StudentItemManager.Block.Count - 1].ItemCount + 1}")
+						if (t.name == $" PlacementPoint00{_block[_block.Count - 1].ItemCount + 1}")
 						{
-							if (MainSystem.Instance.StudentItemManager.Block[MainSystem.Instance.StudentItemManager.Block.Count - 1].ItemCount + 1 > 2)
+							if (_block[_block.Count - 1].ItemCount + 1 > 2)
 							{
 								pedestal = (GameObject)Resources.Load("Pedestal_RightLine");
 								Item itemRight = pedestal.GetComponent<Item>();
@@ -157,7 +158,22 @@ public class StudentItemManager : MonoBehaviour
 								itemRight.ExplanationText = explanation;
 							}
 
-							MainSystem.Instance.StudentItemManager.Block[MainSystem.Instance.StudentItemManager.Block.Count - 1].AddItem(item);
+							_block[_block.Count - 1].AddItem(item);
+
+
+
+							ItemData itemData = new ItemData();
+							itemData.ItemPath = path;
+							itemData.Title = title;
+							itemData.Author = author;
+							itemData.Explanation = explanation;
+							string itemDataPath = "ItemData.json";
+							SaveData saveData =MainSystem.Instance.SaveDataManager.Load<SaveData>(itemDataPath);
+							saveData.ItemDatas.Add(itemData);
+							MainSystem.Instance.SaveDataManager.Save(saveData, itemDataPath);
+
+
+
 							GameObject instanceObj = Instantiate(
 																pedestal,
 																new Vector3(
@@ -167,7 +183,7 @@ public class StudentItemManager : MonoBehaviour
 																			),
 																pedestal.gameObject.transform.rotation,
 																pedestalParent);
-							MainSystem.Instance.StudentItemManager.ExhibitionItem.Add(pedestal);
+							_exhibitionItem.Add(pedestal.GetComponent<Item>());
 
 							foreach (Transform j in instanceObj.GetComponentsInChildren<Transform>())
 							{
@@ -189,7 +205,6 @@ public class StudentItemManager : MonoBehaviour
 							break;
 						}
 					}
-
 				}
 			}
 		}
@@ -198,7 +213,7 @@ public class StudentItemManager : MonoBehaviour
 
 	public void ResetValue()
 	{
-		_exhibitionItem = new List<GameObject>();
+		_exhibitionItem = new List<Item>();
 		_block = new List<Block>();
 		_blockCoefficient = 1;
 		_itemCoefficient = 0;

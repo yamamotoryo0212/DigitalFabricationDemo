@@ -7,6 +7,10 @@ public class CameraMoving : MonoBehaviour
 	[SerializeField]
 	private float _sensitivity = 0;
 	[SerializeField]
+	private float _controllerSensitivity = 0;
+	[SerializeField]
+	private float _controllerSpeed = 0;
+	[SerializeField]
 	private float _speed = 0;
 	private Vector3 _lastMousePosition = Vector3.zero;
 	private Vector3 _newAngle = Vector3.zero;
@@ -17,6 +21,7 @@ public class CameraMoving : MonoBehaviour
 		_rigidbody = GetComponent<Rigidbody>();
 		_newAngle = gameObject.transform.localEulerAngles;
 		_lastMousePosition = Input.mousePosition;
+		Cursor.visible = false;
 	}
 
 	private void Update()
@@ -55,6 +60,20 @@ public class CameraMoving : MonoBehaviour
 
 	private void CameraMove()
 	{
+		if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
+		{
+			_rigidbody.velocity = Vector3.zero;
+		}
+
+		_rigidbody.velocity = new Vector3(gameObject.transform.forward.x * Input.GetAxis("Vertical") * _controllerSpeed + gameObject.transform.right.x * Input.GetAxis("Horizontal") * _controllerSpeed,
+																gameObject.transform.forward.y * Input.GetAxis("Vertical") * _controllerSpeed+ gameObject.transform.right.y * Input.GetAxis("Horizontal") * _controllerSpeed,
+																gameObject.transform.forward.z * Input.GetAxis("Vertical") * _controllerSpeed+ gameObject.transform.right.z * Input.GetAxis("Horizontal") * _controllerSpeed);
+
+		gameObject.transform.Rotate(Input.GetAxis("Horizontal2") * _controllerSensitivity, Input.GetAxis("Vertical2")*_controllerSensitivity, 0);
+		Vector3 eulerRotation = transform.rotation.eulerAngles;
+		transform.rotation = Quaternion.Euler(eulerRotation.x, eulerRotation.y, 0);
+
+
 		if (Input.GetKey(KeyCode.W))
 		{
 			_rigidbody.velocity = new Vector3(gameObject.transform.forward.x * _speed, gameObject.transform.forward.y * _speed, gameObject.transform.forward.z * _speed);
