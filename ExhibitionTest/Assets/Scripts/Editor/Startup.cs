@@ -23,11 +23,12 @@ public class Startup : MonoBehaviour
 			}
 		}
 
+		MainSystem.Instance.StudentItemManager.ResetValue();
 		SaveData saveData = MainSystem.Instance.SaveDataManager.Load<SaveData>("ItemData.json");
 		foreach (var item in saveData.ItemDatas)
 		{
 			MainSystem.Instance.StudentItemManager.BlockGenerate();
-			MainSystem.Instance.StudentItemManager.ItemGenerate(item.ItemPath, item.Title, item.Author, item.Explanation);
+			MainSystem.Instance.StudentItemManager.ItemGenerate(item.ItemPath, item.Title, item.Author, item.Explanation,false);
 		}
 		EditorApplication.delayCall -= Startup.CallSavaData;
 	}

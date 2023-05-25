@@ -110,7 +110,7 @@ public class StudentItemManager : MonoBehaviour
 
 	}
 
-	public void ItemGenerate(string path,string title,string author,string explanation)
+	public void ItemGenerate(string path,string title,string author,string explanation,bool isStartUp =true)
 	{
 		GameObject pedestal = (GameObject)Resources.Load("Pedestal_LeftLine");
 		Item item = pedestal.GetComponent<Item>();
@@ -161,16 +161,19 @@ public class StudentItemManager : MonoBehaviour
 							_block[_block.Count - 1].AddItem(item);
 
 
+							if (isStartUp)
+							{
+								ItemData itemData = new ItemData();
+								itemData.ItemPath = path;
+								itemData.Title = title;
+								itemData.Author = author;
+								itemData.Explanation = explanation;
+								string itemDataPath = "ItemData.json";
+								SaveData saveData = MainSystem.Instance.SaveDataManager.Load<SaveData>(itemDataPath);
+								saveData.ItemDatas.Add(itemData);
+								MainSystem.Instance.SaveDataManager.Save(saveData, itemDataPath);
+							}
 
-							ItemData itemData = new ItemData();
-							itemData.ItemPath = path;
-							itemData.Title = title;
-							itemData.Author = author;
-							itemData.Explanation = explanation;
-							string itemDataPath = "ItemData.json";
-							SaveData saveData =MainSystem.Instance.SaveDataManager.Load<SaveData>(itemDataPath);
-							saveData.ItemDatas.Add(itemData);
-							MainSystem.Instance.SaveDataManager.Save(saveData, itemDataPath);
 
 
 
