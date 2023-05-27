@@ -36,6 +36,7 @@ public class CameraMoving : MonoBehaviour
 
 	private void ViewpointShift()
 	{
+		return;
 		if (Cursor.lockState == CursorLockMode.None)
 		{
 			_newAngle.y += ((Input.mousePosition.x - _lastMousePosition.x) * _sensitivity);
@@ -73,7 +74,7 @@ public class CameraMoving : MonoBehaviour
 		Vector3 eulerRotation = transform.rotation.eulerAngles;
 		transform.rotation = Quaternion.Euler(eulerRotation.x, eulerRotation.y, 0);
 
-
+		return;
 		if (Input.GetKey(KeyCode.W))
 		{
 			_rigidbody.velocity = new Vector3(gameObject.transform.forward.x * _speed, gameObject.transform.forward.y * _speed, gameObject.transform.forward.z * _speed);

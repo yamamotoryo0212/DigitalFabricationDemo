@@ -12,8 +12,9 @@ public class Startup : MonoBehaviour
 	{
 		EditorApplication.delayCall += Startup.CallSavaData;
 	}
-	private static void CallSavaData()
+	public static void CallSavaData()
 	{
+		Debug.Log("ÉäÉçÅ[Éh");
 		foreach (Transform item in FindObjectsOfType<Transform>())
 		{
 			if (item.gameObject.name == "WorkItem")
@@ -24,11 +25,13 @@ public class Startup : MonoBehaviour
 		}
 
 		MainSystem.Instance.StudentItemManager.ResetValue();
+
 		SaveData saveData = MainSystem.Instance.SaveDataManager.Load<SaveData>("ItemData.json");
-		foreach (var item in saveData.ItemDatas)
+
+		foreach (ItemData item in saveData.ItemDatas)
 		{
 			MainSystem.Instance.StudentItemManager.BlockGenerate();
-			MainSystem.Instance.StudentItemManager.ItemGenerate(item.ItemPath, item.Title, item.Author, item.Explanation,false);
+			MainSystem.Instance.StudentItemManager.ItemGenerate(item.ItemPath, item.Title, item.Author, item.Explanation, false);
 		}
 		EditorApplication.delayCall -= Startup.CallSavaData;
 	}

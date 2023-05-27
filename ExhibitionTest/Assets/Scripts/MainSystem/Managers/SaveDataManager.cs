@@ -21,7 +21,7 @@ public class SaveDataManager : MonoBehaviour
     {
         try
         {
-            StreamReader reader = new StreamReader(path);
+            StreamReader reader = new StreamReader(path,System.Text.Encoding.UTF8);
             string datastr = reader.ReadToEnd();
             reader.Close();
             return JsonUtility.FromJson<T>(datastr);

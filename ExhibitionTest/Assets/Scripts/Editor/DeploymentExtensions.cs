@@ -38,7 +38,7 @@ public class DeploymentExtensions : EditorWindow
 		_author = EditorGUILayout.TextField(_author);
 		EditorGUILayout.SelectableLabel("作品のタイトル");
 		_title = EditorGUILayout.TextField(_title);
-		CategoryDropDown();
+		//CategoryDropDown();
 		EditorGUILayout.SelectableLabel("作品の説明");
 		_explanation = EditorGUILayout.TextArea(_explanation, GUILayout.Height(200));
 
@@ -66,12 +66,9 @@ public class DeploymentExtensions : EditorWindow
 			string path = MainSystem.Instance.AsssetPrefabricationManager.Prefabrication(_object, _title, _author);
 			MainSystem.Instance.StudentItemManager.BlockGenerate();
 			MainSystem.Instance.StudentItemManager.ItemGenerate(path,_title,_author,_explanation);
+			Startup.CallSavaData();
 		}
 
-		//if (GUILayout.Button("ブロック&展示物リセット(test)"))
-		//{
-		//	MainSystem.Instance.StudentItemManager.ResetValue();
-		//}
 		//if (GUILayout.Button("ドロップダウン(test)"))
 		//{
 		//	Debug.Log(_categoryIndex);
