@@ -413,6 +413,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1535593616 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 718321537109341395, guid: 464c6fce5c316e44daaf9091f4d47f3e, type: 3}
+  m_PrefabInstance: {fileID: 7549425340908907531}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09641e37cb179a444a95c775b72869f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7549425340908907531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -464,6 +475,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3493948805133862865, guid: 464c6fce5c316e44daaf9091f4d47f3e, type: 3}
+      propertyPath: _loadGoogleDriveManager
+      value: 
+      objectReference: {fileID: 1535593616}
     - target: {fileID: 5630251703889303995, guid: 464c6fce5c316e44daaf9091f4d47f3e, type: 3}
       propertyPath: m_Name
       value: MainSystem

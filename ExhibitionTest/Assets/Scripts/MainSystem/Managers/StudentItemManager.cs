@@ -45,7 +45,7 @@ public class StudentItemManager : MonoBehaviour
 		//ÉuÉçÉbÉNê∂ê¨ïî
 		{
 			GameObject block = (GameObject)Resources.Load("Block");
-			ItemData itemData = new ItemData(); 
+			ItemData itemData = new ItemData();
 
 			if (_block.Count == 0)
 			{
@@ -110,7 +110,7 @@ public class StudentItemManager : MonoBehaviour
 
 	}
 
-	public void ItemGenerate(string path,string title,string author,string explanation,bool isStartUp =true)
+	public void ItemGenerate(string path, string title, string author, string explanation, bool isStartUp = true)
 	{
 		GameObject pedestal = (GameObject)Resources.Load("Pedestal_LeftLine");
 		Item item = pedestal.GetComponent<Item>();
@@ -198,13 +198,19 @@ public class StudentItemManager : MonoBehaviour
 									MainSystem.Instance.SizeFitterManager.ChangeWorldBoundsSize(3.0f, changeSizeItem);
 
 									GameObject parent = new GameObject();
-									changeSizeItem.transform.position = MainSystem.Instance.FixPivotManager.FixPivot(changeSizeItem);
+									try
+									{
+										changeSizeItem.transform.position = MainSystem.Instance.FixPivotManager.FixPivot(changeSizeItem);
+									}
+									catch
+									{
+										Debug.Log("ffsfs");
+									}
 									changeSizeItem.transform.SetParent(parent.transform);
 									parent.transform.position = j.position;
 									parent.transform.SetParent(itemsParent);
 								}
 							}
-
 							break;
 						}
 					}

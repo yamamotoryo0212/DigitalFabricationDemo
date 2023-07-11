@@ -16,10 +16,17 @@ public class FixPivotManager : MonoBehaviour
 				Mesh mesh = Mesh.Instantiate(meshFilter.sharedMesh);
 				foreach (Vector3 j in mesh.vertices)
 				{
-					vertexCount++;
-					centerPos.x += j.x;
-					centerPos.y += j.y;
-					centerPos.z += j.z;
+					try
+					{
+						vertexCount++;
+						centerPos.x += j.x;
+						centerPos.y += j.y;
+						centerPos.z += j.z;
+					}
+					catch
+					{
+						Debug.Log("aaa");
+					}
 				}
 			}
 		}
@@ -31,21 +38,3 @@ public class FixPivotManager : MonoBehaviour
 	}
 
 }
-
-//foreach (Transform k in changeSizeItem.GetComponentsInChildren<Transform>())
-//{
-//	if (k.gameObject.TryGetComponent(out MeshFilter meshFilter))
-//	{
-//		Mesh mesh = Mesh.Instantiate(meshFilter.sharedMesh);
-//		foreach (Vector3 l in mesh.vertices)
-//		{
-//			vertexCount++;
-//			centerPos.x += l.x;
-//			centerPos.y += l.y;
-//			centerPos.z += l.z;
-//		}
-//	}
-//}
-//var x = centerPos.x / vertexCount;
-//var y = centerPos.y / vertexCount;
-//var z = centerPos.z / vertexCount;

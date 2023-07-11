@@ -18,6 +18,7 @@ public class DeveloperWindow : EditorWindow
 		if (GUILayout.Button("ÉäÉçÅ[Éh"))
 		{
 			Startup.CallSavaData();
+			MainSystem.Instance.LoadGoogleDriveManager.LoadItem();
 		}
 
 		EditorGUILayout.Space(200);

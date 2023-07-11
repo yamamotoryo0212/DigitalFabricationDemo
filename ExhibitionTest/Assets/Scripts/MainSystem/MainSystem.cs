@@ -38,4 +38,11 @@ public class MainSystem : SingletonMonoBehaviour<MainSystem>
 	{
 		get { return _saveDataManager; }
 	}
+
+	[SerializeField]
+	private LoadGoogleDriveManager _loadGoogleDriveManager = null;
+	public LoadGoogleDriveManager LoadGoogleDriveManager
+	{
+		get { return _loadGoogleDriveManager; }
+	}
 }
